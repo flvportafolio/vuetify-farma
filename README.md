@@ -33,3 +33,8 @@ npm run build
 ---
 
 ### Dependencias que se utilizan
+
+- vuetify
+- axios
+- pinia
+- vue3-notification
