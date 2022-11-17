@@ -4,6 +4,7 @@ import { useMainStore } from '../stores/index';
 
 import Login from '@/views/pages/Login.vue';
 import Home from '@/views/Home.vue';
+import UsuarioRoutes from '../modulos/usuarios/routes';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         component: Home,
         meta: { title: 'Dashboard' },
       },
-      /* ...*/
+      ...UsuarioRoutes,
     ]
   },
 ];
