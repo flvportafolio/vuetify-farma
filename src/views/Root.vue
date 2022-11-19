@@ -7,7 +7,7 @@ import Navigation from './Navigation.vue';
   <v-layout>
     <Navigation />
     <v-main>
-      <v-container>
+      <v-container class="px-0">
         <router-view v-slot="{ Component }">
           <Transition name="fade">
             <component :is="Component" />

@@ -113,6 +113,7 @@ getUsuariosApi();
           <v-row no-gutters>
             <v-col cols="2" class="pt-2" style="text-align: center">
               <v-btn
+                rounded="pill"
                 color="primary"
                 class="mr-2"
                 @click="goToCreateRoute"

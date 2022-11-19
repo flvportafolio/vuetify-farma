@@ -9,6 +9,12 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+import DatePicker from 'vue-datepicker-next';
+import 'vue-datepicker-next/index.css';
+import 'vue-datepicker-next/locale/es';
+import Multiselect from 'vue-multiselect';
+import 'vue-multiselect/dist/vue-multiselect.css';
+
 import Notifications from '@kyvg/vue3-notification';
 import router from './router';
 import { createPinia } from 'pinia';
@@ -52,5 +58,8 @@ const app = createApp(App);
 app.use(vuetify);
 app.use(createPinia());
 app.use(router);
+
+app.component('multiselect', Multiselect);
+app.use(DatePicker);
 app.use(Notifications);
 app.mount('#app');
