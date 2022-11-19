@@ -23,6 +23,26 @@
           :value="route.name"
         ></v-list-item>
       </template>
+      <v-menu :location="'end'">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            prepend-icon="mdi-cog"
+            append-icon="mdi-chevron-right"
+            title="Configuración"
+            value="config"
+            v-bind="props"
+          ></v-list-item>
+        </template>
+
+        <v-list>
+          <v-list-item
+            :to="{ name: 'profile'}"
+            :active="isRouteActive('profile')"
+            title="Mi perfil"
+            value="profile"
+          ></v-list-item>
+        </v-list>
+      </v-menu>
       <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" value="logout" @click="logout"></v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -61,7 +81,7 @@ const routes = reactive([
     haveAccess: computed(() => store.canListarUsuarios),
     disabled: false,
   },
-  /* {
+  {
     name: 'producto-index',
     text: 'Productos',
     icon: 'mdi-package',
@@ -71,31 +91,31 @@ const routes = reactive([
   {
     name: 'proveedor-index',
     text: 'Proveedores',
-    icon: 'groups',
+    icon: 'mdi-account-group',
     haveAccess: true,
     disabled: true,
   },
   {
     name: 'pedido-index',
     text: 'Pedidos',
-    icon: 'fact_check',
+    icon: 'mdi-book-open-variant',
     haveAccess: true,
     disabled: true,
   },
   {
     name: 'inventario-index',
     text: 'Inventario',
-    icon: 'inventory_2',
+    icon: 'mdi-archive',
     haveAccess: true,
     disabled: true,
   },
   {
     name: 'reportes-index',
     text: 'Reportes',
-    icon: 'description',
+    icon: 'mdi-file-chart',
     haveAccess: true,
     disabled: true,
-  }, */
+  },
 ]);
 
 function isRouteActive (actualRouteName: string) {

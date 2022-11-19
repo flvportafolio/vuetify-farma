@@ -4,7 +4,13 @@ import { useMainStore } from '../stores/index';
 
 import Login from '@/views/pages/Login.vue';
 import Home from '@/views/Home.vue';
+import ProfileRoutes from '../modulos/perfil/routes';
 import UsuarioRoutes from '../modulos/usuarios/routes';
+import ProductoRoutes from '../modulos/productos/routes';
+import ProveedorRoutes from '../modulos/proveedores/routes';
+import PedidoRoutes from '../modulos/pedidos/routes';
+import InventarioRoutes from '../modulos/inventario/routes';
+import ReporteRoutes from '../modulos/reportes/routes';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,7 +36,13 @@ const routes: Array<RouteRecordRaw> = [
         component: Home,
         meta: { title: 'Dashboard' },
       },
+      ...ProfileRoutes,
       ...UsuarioRoutes,
+      ...ProductoRoutes,
+      ...ProveedorRoutes,
+      ...PedidoRoutes,
+      ...InventarioRoutes,
+      ...ReporteRoutes,
     ]
   },
 ];
