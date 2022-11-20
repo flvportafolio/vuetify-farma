@@ -1,4 +1,5 @@
-<!-- <script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import {
   getClasifications,
   createClasification,
@@ -8,14 +9,14 @@ import {
 import showNotify, { TypeNotification } from '@/utils/notifications';
 import { StatusCodes } from '@/utils/statusCodes';
 
-export default {
+export default defineComponent({
   name: 'ModalClasificacion',
   props: ['modelValue'],
   emits: ['update:modelValue', 'onUpdate'],
   data() {
     return {
       textButton: 'Guardar',
-      selectedId: null,
+      selectedId: null as any,
       nombre: '',
       descripcion: '',
       isDisabledButton: false,
@@ -36,7 +37,7 @@ export default {
           key: 'descripcion', label: 'Descripción', width: '49%',
         },
       ],
-      items: [],
+      items: [] as Array<any>,
       isLoadingTable: true,
       currentPage: 1,
       perPage: 10,
@@ -79,9 +80,9 @@ export default {
         showNotify('Registro exitoso!', response.data.message, TypeNotification.Ok);
         this.clearFields();
         this.getClasificacionesApi();
-      } catch (error) {
-        Object.entries(error.response.data.validations).forEach(([, value]) => {
-          value.forEach((el) => {
+      } catch (error: any) {
+        Object.entries(error.response.data.validations).forEach(([, value]: any) => {
+          value.forEach((el: string) => {
             showNotify('Error de validación', el, TypeNotification.Warn);
           });
         });
@@ -89,7 +90,7 @@ export default {
         this.isDisabledButton = false;
       }
     },
-    editarItem(item) {
+    editarItem(item: any) {
       this.textButton = 'Modificar';
       this.selectedId = item.id;
       this.nombre = item.nombre;
@@ -108,20 +109,20 @@ export default {
         this.clearFields();
         this.getClasificacionesApi();
         this.$emit('onUpdate');
-      } catch (error) {
-        Object.entries(error.response.data.validations).forEach(([, value]) => {
-          value.forEach((el) => {
-            showNotify('Error de validación', el, 'warn');
+      } catch (error: any) {
+        Object.entries(error.response.data.validations).forEach(([, value]: any) => {
+          value.forEach((el: string) => {
+            showNotify('Error de validación', el, TypeNotification.Warn);
           });
         });
       } finally {
         this.isDisabledButton = false;
       }
     },
-    async deleteItem(id) {
+    async deleteItem(id: string) {
       this.clearFields();
       try {
-        this.items = this.items.filter((el) => el.id !== id);
+        this.items = this.items.filter((el: any) => el.id !== id);
         const response = await deleteClasification(id);
         if (response.status === StatusCodes.deleted) {
           showNotify('Registro Eliminado', 'Se elimino el registro correctamente.', TypeNotification.Ok);
@@ -129,7 +130,7 @@ export default {
           showNotify('No se pudo eliminar el registro', response.data.message, TypeNotification.Error);
           this.getClasificacionesApi();
         }
-      } catch (error) {
+      } catch (error: any) {
         if (error.response.status === StatusCodes.notFound) {
           showNotify('No se pudo eliminar el registro', 'Recargue la página e intente nuevamente.', TypeNotification.Error);
         }
@@ -149,7 +150,7 @@ export default {
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: any) {
         this.$emit('update:modelValue', value);
       }
     },
@@ -161,81 +162,130 @@ export default {
     currentPage(newVal,oldVal) {
       this.getClasificacionesApi();
     },
+    modal(val: boolean) {
+      if (val === true) {
+        this.onOpenModal();
+      }
+    },
   },
-};
+});
 </script>
 <template>
-  <va-modal
+  <v-dialog
     v-model="modal"
-    size="large"
-    hide-default-actions
-    title="Clasificación"
-    @open="onOpenModal"
+    :open-on-click="false"
+    max-width="700px"
   >
-    <div class="row mx-0 mb-3">
-      <div class="flex md5 pr-3">        
-        <va-input
-          v-model="nombre"
-          label="Nombre:"
-          required-mark
-          placeholder="Escriba un nombre"
-        />
-      </div>
-      <div class="flex md5 pr-3">
-        <va-input
-          v-model="descripcion"
-          :disabled="isDisabledButton"
-          @keyup.enter="handleStoreOrUpdate"
-          label="Descripción:"
-          placeholder="Escriba una descripción"
-        />
-      </div>
-      <div class="flex md2">
-        <va-button
-          color="success"
-          :disabled="isDisabledButton"
-          @click="handleStoreOrUpdate"
-        >
-          {{textButton}}
-        </va-button>
-      </div>
-    </div>
-    <div class="row mx-0 table-responsive">
-      <va-data-table
-        no-data-html="No hay datos"
-        striped
-        :items="items"
-        :columns="fields"
-        :loading="isLoadingTable"
-      >
-        <template #cell(editar)="{ rowData }">
-          <va-icon
-            name="edit"
-            color="secondary"
-            @click="editarItem(rowData)"
+    <v-card>
+      <template v-slot:title>
+        Clasificación
+      </template>
+      <v-row class="mx-0">
+        <v-col cols="5">
+          <v-text-field
+            v-model="nombre"
+            label="Nombre:"
+            density="compact"
+            placeholder="Escriba un nombre"
+          >
+            <!-- <template v-slot:label>
+              <span>
+                Nombre: <span class="text-error">*</span>
+              </span>
+            </template> -->
+          </v-text-field>
+        </v-col>
+        <v-col cols="5">
+          <v-text-field
+            v-model="descripcion"
+            :disabled="isDisabledButton"
+            @keyup.enter="handleStoreOrUpdate"
+            label="Descripción:"
+            placeholder="Escriba una descripción"
+            density="compact"
           />
-        </template>
-        <template #cell(eliminar)="{ rowData }">
-          <va-icon
-            @click="deleteItem(rowData.id)"
-            name="delete_outline"
-            color="danger"
-          />
-        </template>
-      </va-data-table>
-    </div>
-    <div class="row mt-3">
-      <div class="flex offset--md6 md6 pl-0">
-        <va-pagination
-          v-model="currentPage"
-          :pages="getPagesPagination"
-          :visible-pages="3"
-          direction-links
-        />
-      </div>
-    </div>
-  </va-modal>
-</template> -->
-<template>
-  <div>Modal Clasificacion</div>
+        </v-col>
+        <v-col cols="2" class="pl-0 pr-3">
+          <v-btn
+            rounded="pill"
+            color="success"
+            :disabled="isDisabledButton"
+            @click="handleStoreOrUpdate"
+          >
+            {{textButton}}
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="mx-0">
+        <v-col cols="12">
+          <v-table>
+            <thead>
+              <tr>
+                <th
+                  v-for="(item, index) in fields"
+                  :key="index"
+                  :width="item.width"
+                >
+                  {{item.label}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="isLoadingTable">
+                <th colspan="5" class="text-center">
+                  <v-progress-circular
+                    class="mr-2"
+                    indeterminate
+                    color="primary"
+                  ></v-progress-circular>
+                  Cargando...
+                </th>
+              </tr>
+              <template v-else>
+                <tr
+                  v-for="item in items"
+                  :key="item.id"
+                >
+                  <td>
+                    <v-icon
+                      @click="editarItem(item)"
+                      icon="mdi-pencil"
+                      color="secondary"
+                    />
+                  </td>
+                  <td>
+                    <v-icon
+                      @click="deleteItem(item.id)"
+                      icon="mdi-trash-can-outline"
+                      color="error"
+                      style="cursor:pointer"
+                    ></v-icon>
+                  </td>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.nombre }}</td>
+                  <td>{{ item.descripcion }}</td>
+                </tr>
+              </template>
+              <tr v-if="items.length === 0 && isLoadingTable === false">
+                <th colspan="5">
+                  No hay datos
+                </th>
+              </tr>
+            </tbody>
+          </v-table>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="6"></v-col>
+        <v-col cols="6">
+          <v-pagination
+            v-model="currentPage"
+            @update:model-value="getClasificacionesApi"
+            :total-visible="3"
+            :length="getPagesPagination"
+          ></v-pagination>
+        </v-col>
+      </v-row>
+    </v-card>
+  </v-dialog>
 </template>
