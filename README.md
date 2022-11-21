@@ -38,3 +38,21 @@ npm run build
 - axios
 - pinia
 - vue3-notification
+
+## Capturas de Pantalla
+
+### Módulo de usuarios
+
+| Listado  | Crear / Modificar |
+| ------ | ------ |
+| ![userlist1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list1.png) | ![usernew1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_new1.png) |
+| ![userlist2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list2.png) | ![useredit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_edit1.png) |
+
+### Módulo de productos
+| Listado  | Modificar |
+| ------ | ------ |
+| ![products_list1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_list1.png) | ![products_edit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_edit1.png) |
+| ![products_list2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_modal_clasificacion.png) | |
+
+### Perfil de Usuario
+![profile](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/profile.png)
