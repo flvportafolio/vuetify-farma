@@ -223,7 +223,7 @@ export default defineComponent({
                   Medicamento
                 </label>              
               </legend>
-              <v-row>
+              <v-row class="mb-3">
                 <v-col cols="5" class="text-right pr-0">
                   Temperatura de Conservación:
                 </v-col>
