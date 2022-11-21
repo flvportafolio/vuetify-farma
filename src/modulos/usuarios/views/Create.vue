@@ -134,7 +134,7 @@ export default defineComponent({
       </v-row>
       <v-divider></v-divider>
       <div v-if="interfaceIsReady">
-        <v-row class="mx-0 my-7 mb-0">
+        <v-row class="mx-0 mt-7 mb-0">
           <v-col cols="2" class="text-right pr-0">
             Nombre(s): <span class="text-error">*</span>
           </v-col>
