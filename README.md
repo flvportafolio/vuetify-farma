@@ -45,14 +45,14 @@ npm run build
 
 | Listado  | Crear / Modificar |
 | ------ | ------ |
-| ![userlist1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list1.png) | ![usernew1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_new1.png) |
-| ![userlist2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list2.png) | ![useredit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_edit1.png) |
+| ![userlist1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list1.PNG) | ![usernew1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_new1.PNG) |
+| ![userlist2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_list2.PNG) | ![useredit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/users_edit1.PNG) |
 
 ### Módulo de productos
 | Listado  | Modificar |
 | ------ | ------ |
-| ![products_list1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_list1.png) | ![products_edit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_edit1.png) |
-| ![products_list2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_modal_clasificacion.png) | |
+| ![products_list1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_list1.PNG) | ![products_edit1](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_edit1.PNG) |
+| ![products_list2](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/products_modal_clasificacion.PNG) | |
 
 ### Perfil de Usuario
-![profile](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/profile.png)
+![profile](https://github.com/flvportafolio/vuetify-farma/blob/master/capturas/profile.PNG)
