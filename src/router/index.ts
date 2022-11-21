@@ -2,6 +2,8 @@ import { nextTick } from 'vue';
 import { createWebHistory, createRouter, RouteRecordRaw  } from 'vue-router';
 import { useMainStore } from '../stores/index';
 
+import Error403 from '@/views/pages/Error403.vue';
+import Error404 from '@/views/pages/Error404.vue';
 import Login from '@/views/pages/Login.vue';
 import Home from '@/views/Home.vue';
 import ProfileRoutes from '../modulos/perfil/routes';
@@ -44,6 +46,18 @@ const routes: Array<RouteRecordRaw> = [
       ...InventarioRoutes,
       ...ReporteRoutes,
     ]
+  },
+  {
+    path: '/403',
+    name: 'unauthorized',
+    component: Error403,
+    meta: { title: 'Error 403' },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'error-404',
+    component: Error404,
+    meta: { title: 'Error 404' },
   },
 ];
 
